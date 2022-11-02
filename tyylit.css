@@ -10,8 +10,10 @@ body {
     animation-duration: 8s;
     animation-name: ylos-alas;
     animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
+/* gradient */
 .stop1 {
     stop-color: black;
 }
@@ -24,16 +26,20 @@ body {
     stop-color: black;
 }
 
+.stop4 {
+    stop-color: yellow;
+}
+
 @keyframes ylos-alas {
     from {
         transform: translate(0%,0%);
-        /* värin vaihdos tähänkin? fill=??*/
+        fill:url(#Gradient2);
     }
     50% {
         transform: translate(0%,100vh);
-        /* värin vaihdos tähän? fill= ??*/
     }
     to {
         transform: translate(0%,0%);
+        fill:url(#Gradient4);
     }
 }
