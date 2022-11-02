@@ -3,7 +3,9 @@
 
 window.onload = function () {
     lisaaDefs();
-    teePalkki();
+    for (let i = 0; i < 10; i++) {
+        teePalkki(i);
+    }
 };
 
 function lisaaDefs() {
@@ -32,10 +34,12 @@ function lisaaDefs() {
 }
 
 /**
- * Nyt lisää suoraan bodyyn tämän
- * Voisi tehdä niinkin että palauttaa svg:n, joka lisättäisiin haluttuun kohtaan
+ * Nyt lisää suoraan bodyyn tämän, mutta:
+ * Voisi tehdä niinkin että palauttaa svg:n,
+ * joka lisättäisiin haluttuun kohtaan
+ * @param {Number} delay 
  */
-function teePalkki() {
+function teePalkki(delay) {
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("class", "hbar");
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -51,6 +55,7 @@ function teePalkki() {
     rect.setAttribute("fill", "url(#Gradient1)");
 
     svg.appendChild(rect);
+    svg.style.animationDelay = String(delay * 200) + "ms";
     document.body.appendChild(svg);
 
 }
