@@ -1,0 +1,39 @@
+body {
+    background-color: black;
+    margin: 0;
+}
+
+.hbar {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    animation-duration: 16s;
+    animation-name: ylos-alas;
+    animation-iteration-count: infinite;
+}
+
+.stop1 {
+    stop-color: black;
+}
+
+.stop2 {
+    stop-color: rgb(204, 0, 204);
+}
+
+.stop3 {
+    stop-color: black;
+}
+
+@keyframes ylos-alas {
+    from {
+        transform: translate(0%,0%);
+        /* värin vaihdos tähänkin? fill=??*/
+    }
+    50% {
+        transform: translate(0%,100vh);
+        /* värin vaihdos tähän? fill= ??*/
+    }
+    to {
+        transform: translate(0%,0%);
+    }
+}
