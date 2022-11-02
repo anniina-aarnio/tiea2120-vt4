@@ -45,7 +45,7 @@ function teePalkki(delay) {
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svg.setAttribute("version", "1.1");
     svg.setAttribute("width", "100%");
-    svg.setAttribute("height", "20");
+    svg.setAttribute("height", "50");
 
     let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", "0");
@@ -55,7 +55,8 @@ function teePalkki(delay) {
     rect.setAttribute("fill", "url(#Gradient1)");
 
     svg.appendChild(rect);
-    svg.style.animationDelay = String(delay * 200) + "ms";
+    svg.style.animationDelay = String(delay * 100) + "ms";
+    svg.style.transitionTimingFunction = "linear";
     document.body.appendChild(svg);
 
 }
