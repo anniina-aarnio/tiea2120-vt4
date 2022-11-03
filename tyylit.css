@@ -36,11 +36,24 @@ svg, canvas {
     z-index: -1;
 }
 
-.pariton-pollo {
+.pariton-pollo, .parillinen-pollo {
     z-index: 100;
-    left: 50%;
-    right: 50%;
+    left: 0%;
+    right: 0%;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;    
 }
+
+.pariton-pollo {
+    animation-name: ees-taas-oikea;
+}
+
+.parillinen-pollo {
+    animation-name: ees-taas-vasen;
+}
+
 
 /* gradient */
 .stop1 {
@@ -88,5 +101,23 @@ svg, canvas {
     }
     to {
         transform: translate(0%,0%);
+    }
+}
+
+@keyframes ees-taas-vasen {
+    from {
+        transform: translate(0%, calc(50vh - 276px));
+    }
+    to {
+        transform: translate(calc(100vw - 562px), calc(50vh - 276px));
+    }
+}
+
+@keyframes ees-taas-oikea {
+    from {
+        transform: translate(calc(100vw - 562px), calc(50vh - 276px));
+    }
+    to {
+        transform: translate(0%, calc(50vh - 276px));
     }
 }
