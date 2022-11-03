@@ -4,13 +4,12 @@
 window.onload = function () {
     lisaaDefs(2);
     lisaaDefs(4);
-    for (let i = 0; i < 10; i++) {
-        teePalkki(i);
-    }
+    lisaaPalkkeja(10, 30);
 
     let pingviininappi = document.getElementById("pingviininappi");
     pingviininappi.addEventListener("click", lisaaPingviiniEvent);
 
+    teePollo();
 };
 /**
  * Lisää html-pohjaan svg:n, jossa gradient id-versionimellä varustettuna
@@ -45,18 +44,30 @@ function lisaaDefs(versio) {
 }
 
 /**
+ * Luo palkkeja annetun luvun verran
+ * @param {Number} lkm 
+ * @param {Number} koko
+ */
+function lisaaPalkkeja(lkm, koko) {
+    for (let i = 0; i < lkm; i++) {
+        teePalkki(i, koko);
+    }
+}
+
+/**
  * Nyt lisää suoraan bodyyn tämän, mutta:
  * Voisi tehdä niinkin että palauttaa svg:n,
  * joka lisättäisiin haluttuun kohtaan
  * @param {Number} delay 
+ * @param {Number} koko
  */
-function teePalkki(delay) {
+function teePalkki(delay, koko) {
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("class", "hbar");
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svg.setAttribute("version", "1.1");
     svg.setAttribute("width", "100vw");
-    svg.setAttribute("height", "30");
+    svg.setAttribute("height", String(koko));
 
     let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", "0");
@@ -72,13 +83,18 @@ function teePalkki(delay) {
 }
 
 /**
- * 
+ * Eventtifunktio, joka kutsuu lisääPingviini-funktiota.
  * @param {Event} e 
  */
 function lisaaPingviiniEvent(e) {
     lisaaPingviini();
 }
 
+/**
+ * Lisää pingviinin kulkemaan vasemmasta kulmasta
+ * alavasempaan -> alaoikeaan -> yläoikeaan -> ylävasempaan
+ * ja takaisin
+ */
 function lisaaPingviini() {
 
     let pingviini = new Image(150, 150);
@@ -90,26 +106,30 @@ function lisaaPingviini() {
 }
 
 /**
- * Lisää pingviinin kulkemaan vasemmasta kulmasta
- * alavasempaan -> alaoikeaan -> yläoikeaan -> ylävasempaan
- * ja takaisin
+ * Luodaan keskelle ruutua 16 vaakaosaan jaettu pöllö, josta
+ * - parittomat osa liikkuu alkuun vasemmalle,
+ * - parilliset liikkuu alkuun oikealle
+ * Suunta vaihtuu kun pöllön ulommainen osa menee reunaan
+ * Puolivälissä ruutua pöllöosat menevät toistensa lomitse
+ * luoden hetkellisesti kokonaisen pöllön kuvan, kunnes
+ * jatkavat matkaansa taas reunoille jne.
  */
-function lisaaPingviini2() {
+function teePollo() {
     // luodaan uusi canvas
     let canvas = document.createElement("canvas");
-    canvas.setAttribute("width", "150px");
-    canvas.setAttribute("height", "150px");
+    canvas.setAttribute("width", "564");
+    canvas.setAttribute("height", "552");
 
     // luodaan uusi kuva
-    let pingviini = document.createElement("img");
-    pingviini.setAttribute("src", "https://appro.mit.jyu.fi/tiea2120/vt/vt4/penguin.png");
+    let pollo = new Image();
+    pollo.src = "https://appro.mit.jyu.fi/tiea2120/vt/vt4/owl.png";
 
     // lisätään kuva canvasiin
     let ctx = canvas.getContext('2d');
-    ctx.drawImage(pingviini, 0, 0, 150, 150, 0, 0, 150, 150);
+    ctx.drawImage(pollo, 0, 0);
+    ctx.save();
 
     // lisätään animaatiota varten class
-    canvas.setAttribute("class", "pingviinikuva");
+    canvas.setAttribute("class", "pariton-pollo");
     document.body.appendChild(canvas);
-
 }

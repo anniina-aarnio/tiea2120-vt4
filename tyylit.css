@@ -1,6 +1,8 @@
 body {
     background-color: black;
     margin: 0;
+    overflow: hidden;
+    z-index: 0;
 }
 
 button {
@@ -8,8 +10,11 @@ button {
     z-index: 100;
 }
 
-.hbar {
+svg, canvas {
     position: absolute;
+}
+
+.hbar {
     left: 0%;
     right: 0%;
     animation-duration: 8s;
@@ -29,6 +34,12 @@ button {
     animation-direction: alternate;
     animation-timing-function: linear;
     z-index: -1;
+}
+
+.pariton-pollo {
+    z-index: 100;
+    left: 50%;
+    right: 50%;
 }
 
 /* gradient */
@@ -64,18 +75,18 @@ button {
 
 @keyframes ruudun-ympari {
     from {
-        transform: translate(0vw,0vh);
+        transform: translate(0%,0%);
     }
-    20% {
-        transform: translate(0vw,calc(100vh - 150px));
+    25% {
+        transform: translate(0%,calc(100vh - 150px));
     }
-    40% {
+    50% {
         transform: translate(calc(100vw - 150px),calc(100vh - 150px));
     }
-    60% {
-        transform: translate(calc(100vw - 150px),0vh);
+    75% {
+        transform: translate(calc(100vw - 150px),0%);
     }
     to {
-        transform: translate(0vw,0vh);
+        transform: translate(0%,0%);
     }
 }
