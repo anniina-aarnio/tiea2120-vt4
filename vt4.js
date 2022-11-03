@@ -76,26 +76,17 @@ function teePalkki(delay) {
  * @param {Event} e 
  */
 function lisaaPingviiniEvent(e) {
-    lisaaPingviini2();
+    lisaaPingviini();
 }
 
 function lisaaPingviini() {
-    let canvas = document.createElement("canvas");
-    canvas.setAttribute("width", "150px");
-    canvas.setAttribute("height", "150px");
 
     let pingviini = new Image(150, 150);
     pingviini.src = "https://appro.mit.jyu.fi/tiea2120/vt/vt4/penguin.png";
 
-    // lisätään kuva canvasiin
-    let ctx = canvas.getContext('2d');
-    ctx.drawImage(pingviini, 150, 150);
-    ctx.font = '30px serif';
-    ctx.fillText("moi", 100, 100);
-
     // lisätään animaatiota varten class
-    canvas.setAttribute("class", "pingviinikuva");
-    document.body.appendChild(canvas);
+    pingviini.setAttribute("class", "pingviinikuva");
+    document.body.appendChild(pingviini);
 }
 
 /**
