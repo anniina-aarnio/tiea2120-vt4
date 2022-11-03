@@ -12,6 +12,7 @@ button {
 
 svg, canvas {
     position: absolute;
+    z-index: -1
 }
 
 .hbar {
@@ -21,7 +22,7 @@ svg, canvas {
     animation-name: ylos-alas;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
-    z-index: -2;
+    z-index: -3;
 }
 
 .pingviinikuva {
@@ -33,7 +34,7 @@ svg, canvas {
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-timing-function: linear;
-    z-index: -1;
+    z-index: -2;
 }
 
 .pariton-pollo, .parillinen-pollo {
