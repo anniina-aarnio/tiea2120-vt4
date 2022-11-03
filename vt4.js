@@ -7,8 +7,18 @@ window.onload = function () {
     for (let i = 0; i < 10; i++) {
         teePalkki(i);
     }
-};
 
+    let pingviininappi = document.getElementById("pingviininappi");
+    pingviininappi.addEventListener("click", lisaaPingviiniEvent);
+
+};
+/**
+ * Lisää html-pohjaan svg:n, jossa gradient id-versionimellä varustettuna
+ * jotta siihen voi viitata fill:llä muissa svg:issä
+ * Toistaiseksi sitä kutsutaan 2 ja 4, jotta saa stop2 ja stop4-versiot
+ * joita hyödynnetään palkkien ylä- ja alasuunnissa
+ * @param {Number} versio 
+ */
 function lisaaDefs(versio) {
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
@@ -31,7 +41,7 @@ function lisaaDefs(versio) {
 
     svg.appendChild(defs);
     defs.appendChild(linearGradient);
-    document.body.appendChild(svg);
+    document.body.insertBefore(svg,document.getElementById("pingviininappi"));
 }
 
 /**
@@ -58,5 +68,57 @@ function teePalkki(delay) {
     svg.appendChild(rect);
     svg.style.animationDelay = String(delay * 100) + "ms";
     document.body.appendChild(svg);
+
+}
+
+/**
+ * 
+ * @param {Event} e 
+ */
+function lisaaPingviiniEvent(e) {
+    lisaaPingviini2();
+}
+
+function lisaaPingviini() {
+    let canvas = document.createElement("canvas");
+    canvas.setAttribute("width", "150px");
+    canvas.setAttribute("height", "150px");
+
+    let pingviini = new Image(150, 150);
+    pingviini.src = "https://appro.mit.jyu.fi/tiea2120/vt/vt4/penguin.png";
+
+    // lisätään kuva canvasiin
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(pingviini, 150, 150);
+    ctx.font = '30px serif';
+    ctx.fillText("moi", 100, 100);
+
+    // lisätään animaatiota varten class
+    canvas.setAttribute("class", "pingviinikuva");
+    document.body.appendChild(canvas);
+}
+
+/**
+ * Lisää pingviinin kulkemaan vasemmasta kulmasta
+ * alavasempaan -> alaoikeaan -> yläoikeaan -> ylävasempaan
+ * ja takaisin
+ */
+function lisaaPingviini2() {
+    // luodaan uusi canvas
+    let canvas = document.createElement("canvas");
+    canvas.setAttribute("width", "150px");
+    canvas.setAttribute("height", "150px");
+
+    // luodaan uusi kuva
+    let pingviini = document.createElement("img");
+    pingviini.setAttribute("src", "https://appro.mit.jyu.fi/tiea2120/vt/vt4/penguin.png");
+
+    // lisätään kuva canvasiin
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(pingviini, 0, 0, 150, 150, 0, 0, 150, 150);
+
+    // lisätään animaatiota varten class
+    canvas.setAttribute("class", "pingviinikuva");
+    document.body.appendChild(canvas);
 
 }

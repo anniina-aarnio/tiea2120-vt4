@@ -3,6 +3,11 @@ body {
     margin: 0;
 }
 
+button {
+    float: left;
+    z-index: 100;
+}
+
 .hbar {
     position: absolute;
     left: 0%;
@@ -11,6 +16,19 @@ body {
     animation-name: ylos-alas;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
+    z-index: -2;
+}
+
+.pingviinikuva {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    animation-duration: 10s;
+    animation-name: ruudun-ympari;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    z-index: -1;
 }
 
 /* gradient */
@@ -32,14 +50,32 @@ body {
 
 @keyframes ylos-alas {
     from {
-        transform: translate(0%,0%);
+        transform: translate(0vw,0vh);
         fill:url(#Gradient2);
     }
     50% {
-        transform: translate(0%,100vh);
+        transform: translate(0vw,100vh);
     }
     to {
-        transform: translate(0%,0%);
+        transform: translate(0vw,0vh);
         fill:url(#Gradient4);
+    }
+}
+
+@keyframes ruudun-ympari {
+    from {
+        transform: translate(0vw,0vh);
+    }
+    20% {
+        transform: translate(0vw,calc(100vh - 150px));
+    }
+    40% {
+        transform: translate(calc(100vw - 150px),calc(100vh - 150px));
+    }
+    60% {
+        transform: translate(calc(100vw - 150px),0vh);
+    }
+    to {
+        transform: translate(0vw,0vh);
     }
 }
