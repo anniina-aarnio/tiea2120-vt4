@@ -115,21 +115,36 @@ function lisaaPingviini() {
  * jatkavat matkaansa taas reunoille jne.
  */
 function teePollo() {
-    // luodaan uusi canvas
-    let canvas = document.createElement("canvas");
-    canvas.setAttribute("width", "564");
-    canvas.setAttribute("height", "552");
-
-    // luodaan uusi kuva
+    // luodaan kuva
     let pollo = new Image();
     pollo.src = "https://appro.mit.jyu.fi/tiea2120/vt/vt4/owl.png";
 
-    // lisätään kuva canvasiin
-    let ctx = canvas.getContext('2d');
-    ctx.drawImage(pollo, 0, 0);
-    ctx.save();
+    pollo.addEventListener("load", function (e) {
+        // luodaan 16 canvasta, joille jokaiselle tulee oma osa pöllöstä
+        for (let i = 0; i < 16; i++) {
+            // jokainen canvas on kokonaisen pöllön kokoinen
+            let canvas = document.createElement("canvas");
+            canvas.setAttribute("width", "564");
+            canvas.setAttribute("height", "552");
+            
+            // lisätään kuva canvasiin
+            let ctx = canvas.getContext('2d');
 
-    // lisätään animaatiota varten class
-    canvas.setAttribute("class", "pariton-pollo");
-    document.body.appendChild(canvas);
+            let osanKorkeus = 552/16;
+            // mistä kohtaa kuvaa 
+            ctx.drawImage(pollo, 0, (i*osanKorkeus), 564, osanKorkeus, 0, (i*osanKorkeus), 564, osanKorkeus);
+            ctx.save();
+
+            // lisätään animaatiota varten class
+            if (i % 2 == 0) {
+                canvas.setAttribute("class", "parillinen-pollo");
+            } else {
+                canvas.setAttribute("class", "pariton-pollo");
+            }
+            document.body.appendChild(canvas);
+
+        }
+    });
+
+
 }
