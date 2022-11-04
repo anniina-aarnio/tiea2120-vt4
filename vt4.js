@@ -102,6 +102,8 @@ function lisaaPingviini() {
 
     // lisätään animaatiota varten class
     pingviini.setAttribute("class", "pingviinikuva");
+    pingviini.setAttribute("alt", "liikkuva pingviini");
+    pingviini.setAttribute("title", "pingviini");
     document.body.appendChild(pingviini);
 }
 
